@@ -59,6 +59,7 @@ import {
 } from './agentMemoryRuntimeGuidance'
 import { createAgentModel } from './agentModelAdapter'
 import { truncateStringToSchemaMax } from './agentModelSafety'
+import { omitsTemperature } from './agentSamplingOptions'
 import {
   AgentRunStore,
   assessAgentRunResume,
@@ -851,9 +852,7 @@ function providerOptions(config: AgentModelConfig, promptCacheKey: string): Prov
 }
 
 function samplingOptions(config: AgentModelConfig, temperature: number): { temperature?: number } {
-  const model = text(config.model).toLocaleLowerCase()
-  if (config.protocol === 'anthropic' || (config.protocol === 'openai-responses' && /^(?:gpt-5|o[1-4](?:-|$))/.test(model))) return {}
-  return { temperature }
+  return omitsTemperature(config) ? {} : { temperature }
 }
 
 function compactToolOutputForStorage(toolName: string, output: unknown): unknown {

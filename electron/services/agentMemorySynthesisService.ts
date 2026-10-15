@@ -10,6 +10,7 @@ import {
 } from './agentMemoryService'
 import { createAgentTextRedactionSession } from './agentTextRedaction'
 import { filterAutomaticMemoryEntries, filterAutomaticMemoryPatch, type AgentMemoryQualityIssue } from './agentMemoryQuality'
+import { omitsTemperature } from './agentSamplingOptions'
 import type { AgentFeedbackMemoryEvidence, AgentFeedbackMemorySample, AgentFeedbackReason } from './agentFeedbackStore'
 import type { AgentModelConfig } from './agentService'
 
@@ -66,9 +67,7 @@ function latestUserText(messages: unknown[]): string {
 }
 
 function memorySamplingOptions(config: AgentModelConfig): { temperature?: number } {
-  const modelId = String(config.model || '').trim().toLocaleLowerCase()
-  const reasoningModel = config.protocol === 'openai-responses' && /^(?:gpt-5|o[1-4](?:-|$))/.test(modelId)
-  return reasoningModel || config.protocol === 'anthropic' ? {} : { temperature: 0.1 }
+  return omitsTemperature(config) ? {} : { temperature: 0.1 }
 }
 
 function modelIsConfigured(config?: AgentModelConfig | null): config is AgentModelConfig {

@@ -1,5 +1,6 @@
 import { streamText } from 'ai'
 import { createAgentModel } from './agentModelAdapter'
+import { omitsTemperature } from './agentSamplingOptions'
 import { createAgentTextRedactionSession } from './agentTextRedaction'
 import type { AgentModelConfig } from './agentService'
 
@@ -19,11 +20,8 @@ function fallbackTitle(value: string): string {
 
 function titleSamplingOptions(config: AgentModelConfig): { temperature?: number } {
   const modelId = String(config.model || '').trim().toLocaleLowerCase()
-  const openAiReasoningModel = config.protocol === 'openai-responses'
-    && /^(?:gpt-5|o[1-4](?:-|$))/.test(modelId)
-  const nativeAnthropicModel = config.protocol === 'anthropic'
   const modernClaudeModel = /(?:^|\/)claude-(?:opus-4-(?:[7-9]|\d{2,})|(?:sonnet|opus|haiku|fable|mythos)-(?:[5-9]|\d{2,})(?:-|$))/.test(modelId)
-  return openAiReasoningModel || nativeAnthropicModel || modernClaudeModel ? {} : { temperature: 0.2 }
+  return omitsTemperature(config) || modernClaudeModel ? {} : { temperature: 0.2 }
 }
 
 function titleErrorMessage(error: unknown): string {

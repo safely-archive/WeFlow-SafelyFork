@@ -2,34 +2,6 @@
   <img src="app.jpg" alt="WeFlow 应用预览" width="90%">
 </p>
 
-<p align="center">
-  <a href="https://github.com/xunchahaha/alpha-releases">
-    <img src="https://raw.githubusercontent.com/xunchahaha/alpha-releases/main/assets/alpha-icon.png" alt="Alpha" width="96">
-  </a>
-</p>
-
-<h1 align="center">🎉 Alpha 正式发布</h1>
-
-<h3 align="center">WeFlow 的继任者：更快、更稳、功能更完整</h3>
-
-<p align="center">
-  Alpha 作为 WeFlow 的替代品正式推出。<br/>
-  聊天记录浏览、导出、数据保护和转写等能力全面升级，欢迎迁移体验。
-</p>
-
-<p align="center">
-  <a href="https://github.com/xunchahaha/alpha-releases/releases/latest">
-    <img src="https://img.shields.io/github/v/release/xunchahaha/alpha-releases?label=%E4%B8%8B%E8%BD%BD%20Alpha&style=for-the-badge&color=6C5CE7" alt="下载 Alpha"/>
-  </a>
-</p>
-
-<h3 align="center">
-  👉 <a href="https://github.com/xunchahaha/alpha-releases">github.com/xunchahaha/alpha-releases</a> 👈
-</h3>
-
-<hr/>
-
-
 <h1 align="center">WeFlow</h1>
 
 <p align="center">
